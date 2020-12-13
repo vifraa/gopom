@@ -139,3 +139,38 @@ func TestParsing_Developers(t *testing.T) {
 		t.Error("Developers[0].Roles[1]: expected 'role2', got: " + d.Roles[1])
 	}
 }
+
+func TestParse_Contributors(t *testing.T) {
+	if len(p.Contributors) != 1 {
+		t.Error("Contributors: expected len==1, got: " + strconv.Itoa(len(p.Contributors)))
+	}
+
+	c := p.Contributors[0]
+	if c.Name != "name" {
+		t.Error("Contributors[0].Name: expected 'name', got: " + c.Name)
+	}
+	if c.Email != "email" {
+		t.Error("Contributors[0].Email: expected 'email', got: " + c.Email)
+	}
+	if c.URL != "url" {
+		t.Error("Contributors[0].URL: expected 'url', got: " + c.URL)
+	}
+	if c.Organization != "organization" {
+		t.Error("Contributors[0].Organization: expected 'organization', got: " + c.Organization)
+	}
+	if c.OrganizationURL != "organizationUrl" {
+		t.Error("Contributors[0].OrganizationUrl: expected 'organizationUrl', got: " + c.OrganizationURL)
+	}
+	if c.Timezone != "+1" {
+		t.Error("Contributors[0].Timezone: expected '+1', got: " + c.Timezone)
+	}
+	if len(c.Roles) != 2 {
+		t.Error("Contributors: expected len==2, got: " + strconv.Itoa(len(c.Roles)))
+	}
+	if c.Roles[0] != "role1" {
+		t.Error("Contributors[0].Roles[0]: expected 'role1', got: " + c.Roles[0])
+	}
+	if c.Roles[1] != "role2" {
+		t.Error("Developers[0].Roles[1]: expected 'role2', got: " + c.Roles[1])
+	}
+}
