@@ -2,17 +2,23 @@ package gopom
 
 import (
 	"encoding/xml"
+	"fmt"
+	"os"
 	"testing"
 )
 
-func TestParsing_Parent(t *testing.T) {
-	var p Project
+var p Project
+
+func init() {
 	err := xml.Unmarshal([]byte(examplePom), &p)
 	if err != nil {
-		t.Error(err)
+		fmt.Println("unable to parse xml ", err)
+		os.Exit(1)
 		return
 	}
+}
 
+func TestParsing_Parent(t *testing.T) {
 	if p.Parent.ArtifactID != "test-application" {
 		t.Error("Parent.ArtifactID: expected 'test-application', got: " + p.Parent.ArtifactID)
 	}
