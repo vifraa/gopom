@@ -1,3 +1,3 @@
-module github.com/vifraa/go-pom
+module github.com/vifraa/gopom
 
 go 1.15
