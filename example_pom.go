@@ -223,21 +223,22 @@ var examplePom = `
   <repositories>
     <repository>
       <releases>
-        <enabled/>
-        <updatePolicy/>
-        <checksumPolicy/>
+        <enabled>enabled</enabled>
+        <updatePolicy>updatePolicy</updatePolicy>
+        <checksumPolicy>checksumPolicy</checksumPolicy>
       </releases>
       <snapshots>
-        <enabled/>
-        <updatePolicy/>
-        <checksumPolicy/>
+        <enabled>enabled</enabled>
+        <updatePolicy>updatePolicy</updatePolicy>
+        <checksumPolicy>checksumPolicy</checksumPolicy>
       </snapshots>
-      <id/>
-      <name/>
-      <url/>
-      <layout/>
+      <id>id</id>
+      <name>name</name>
+      <url>url</url>
+      <layout>layout</layout>
     </repository>
   </repositories>
+
   <pluginRepositories>
     <pluginRepository>
       <releases>

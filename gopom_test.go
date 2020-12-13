@@ -348,3 +348,18 @@ func TestParsing_Dependencies(t *testing.T) {
 	assert.Equal(t, "scope", d.Scope)
 	assert.Equal(t, "systemPath", d.SystemPath)
 }
+
+func TestParsing_Repositories(t *testing.T) {
+	assert.Equal(t, 1, len(p.Repositories))
+	r := p.Repositories[0]
+	assert.Equal(t, "id", r.ID)
+	assert.Equal(t, "name", r.Name)
+	assert.Equal(t, "url", r.URL)
+	assert.Equal(t, "layout", r.Layout)
+	assert.Equal(t, "enabled", r.Releases.Enabled)
+	assert.Equal(t, "checksumPolicy", r.Releases.ChecksumPolicy)
+	assert.Equal(t, "updatePolicy", r.Releases.UpdatePolicy)
+	assert.Equal(t, "enabled", r.Snapshots.Enabled)
+	assert.Equal(t, "checksumPolicy", r.Snapshots.ChecksumPolicy)
+	assert.Equal(t, "updatePolicy", r.Snapshots.UpdatePolicy)
+}
