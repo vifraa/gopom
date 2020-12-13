@@ -174,3 +174,36 @@ func TestParse_Contributors(t *testing.T) {
 		t.Error("Developers[0].Roles[1]: expected 'role2', got: " + c.Roles[1])
 	}
 }
+
+func TestParse_MailingLists(t *testing.T) {
+	if len(p.MailingLists) != 1 {
+		t.Error("MailingLists: expected len==1, got: " + strconv.Itoa(len(p.MailingLists)))
+	}
+
+	m := p.MailingLists[0]
+	if m.Name != "name" {
+		t.Error("MailingLists[0].Name: expected 'name', got: " + m.Name)
+	}
+	if m.Subscribe != "subscribe" {
+		t.Error("MailingLists[0].Subscribe: expected 'subscribe', got: " + m.Subscribe)
+	}
+	if m.Unsubscribe != "unsubscribe" {
+		t.Error("MailingLists[0].Unsubscribe: expected 'unsubscribe', got: " + m.Unsubscribe)
+	}
+	if m.Post != "post" {
+		t.Error("MailingLists[0].Post: expected 'post', got: " + m.Post)
+	}
+	if m.Archive != "archive" {
+		t.Error("MailingLists[0].Archive: expected 'archive', got: " + m.Archive)
+	}
+
+	if len(m.OtherArchives) != 2 {
+		t.Error("MailingLists.OtherArchives: expected len==2, got: " + strconv.Itoa(len(m.OtherArchives)))
+	}
+	if m.OtherArchives[0] != "archive1" {
+		t.Error("MailingLists[0].OtherArchives[0]: expected 'archive1', got: " + m.OtherArchives[0])
+	}
+	if m.OtherArchives[1] != "archive2" {
+		t.Error("MailingLists[0].OtherArchives[1]: expected 'archive2', got: " + m.OtherArchives[1])
+	}
+}

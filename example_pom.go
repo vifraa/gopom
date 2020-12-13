@@ -75,12 +75,15 @@ var examplePom = `
  
   <mailingLists>
     <mailingList>
-      <name/>
-      <subscribe/>
-      <unsubscribe/>
-      <post/>
-      <archive/>
-      <otherArchives/>
+      <name>name</name>
+      <subscribe>subscribe</subscribe>
+      <unsubscribe>unsubscribe</unsubscribe>
+      <post>post</post>
+      <archive>archive</archive>
+      <otherArchives>
+		<otherArchive>archive1</otherArchive>
+		<otherArchive>archive2</otherArchive>
+	  </otherArchives>
     </mailingList>
   </mailingLists>
  
