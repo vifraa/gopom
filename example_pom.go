@@ -37,19 +37,24 @@ var examplePom = `
  
   <developers>
     <developer>
-      <id/>
-      <name/>
-      <email/>
-      <url/>
-      <organization/>
-      <organizationUrl/>
-      <roles/>
-      <timezone/>
+      <id>id</id>
+      <name>name</name>
+      <email>email</email>
+      <url>url</url>
+      <organization>organization</organization>
+      <organizationUrl>organizationUrl</organizationUrl>
+      <roles>
+		<role>role1</role>
+		<role>role2</role>
+      </roles>
+      <timezone>+1</timezone>
       <properties>
         <key>value</key>
+        <key2>value2</key2>
       </properties>
     </developer>
   </developers>
+
   <contributors>
     <contributor>
       <name/>

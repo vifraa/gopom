@@ -101,3 +101,41 @@ func TestParsing_Licenses(t *testing.T) {
 		t.Error("Licenses.Comments: expected 'comments', got: " + p.Licenses[0].Comments)
 	}
 }
+
+func TestParsing_Developers(t *testing.T) {
+	if len(p.Developers) != 1 {
+		t.Error("Developers: expected len==1, got: " + strconv.Itoa(len(p.Developers)))
+	}
+
+	d := p.Developers[0]
+	if d.ID != "id" {
+		t.Error("Developers[0].ID: expected 'id', got: " + d.ID)
+	}
+	if d.Name != "name" {
+		t.Error("Developers[0].Name: expected 'name', got: " + d.Name)
+	}
+	if d.Email != "email" {
+		t.Error("Developers[0].Email: expected 'email', got: " + d.Email)
+	}
+	if d.URL != "url" {
+		t.Error("Developers[0].URL: expected 'url', got: " + d.URL)
+	}
+	if d.Organization != "organization" {
+		t.Error("Developers[0].Organization: expected 'organization', got: " + d.Organization)
+	}
+	if d.OrganizationURL != "organizationUrl" {
+		t.Error("Developers[0].OrganizationUrl: expected 'organizationUrl', got: " + d.OrganizationURL)
+	}
+	if d.Timezone != "+1" {
+		t.Error("Developers[0].Timezone: expected '+1', got: " + d.Timezone)
+	}
+	if len(d.Roles) != 2 {
+		t.Error("Developers: expected len==2, got: " + strconv.Itoa(len(d.Roles)))
+	}
+	if d.Roles[0] != "role1" {
+		t.Error("Developers[0].Roles[0]: expected 'role1', got: " + d.Roles[0])
+	}
+	if d.Roles[1] != "role2" {
+		t.Error("Developers[0].Roles[1]: expected 'role2', got: " + d.Roles[1])
+	}
+}
