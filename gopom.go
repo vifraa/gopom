@@ -48,9 +48,9 @@ type Project struct {
 	IssueManagement      IssueManagement      `xml:"issueManagement"`
 	CIManagement         CIManagement         `xml:"ciManagement"`
 	DependencyManagement DependencyManagement `xml:"dependencyManagement"`
-	Dependencies         []Dependency         `xml:"dependencies"`
-	Repositories         []Repository         `xml:"repositories"`
-	PluginRepositories   []PluginRepository   `xml:"pluginRepositories"`
+	Dependencies         []Dependency         `xml:"dependencies>dependency"`
+	Repositories         []Repository         `xml:"repositories>repository"`
+	PluginRepositories   []PluginRepository   `xml:"pluginRepositories>pluginRepository"`
 	Build                Build                `xml:"build"`
 	Reporting            Reporting            `xml:"reporting"`
 	// TODO Profiles
