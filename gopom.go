@@ -41,7 +41,7 @@ type Project struct {
 	Licenses             []License            `xml:"licenses>license"`
 	Developers           []Developer          `xml:"developers>developer"`
 	Contributors         []Contributor        `xml:"contributors>contributor"`
-	MailingLists         []MailingList        `xml:"mailingLists"`
+	MailingLists         []MailingList        `xml:"mailingLists>mailingList"`
 	Prerequisites        Prerequisites        `xml:"prerequisites"`
 	Modules              []string             `xml:"modules>module"`
 	SCM                  Scm                  `xml:"scm"`
