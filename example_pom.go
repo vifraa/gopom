@@ -21,11 +21,11 @@ var examplePom = `
   <url>testUrl</url>
   <inceptionYear>2020</inceptionYear>
 
-
   <organization>
-    <name/>
-    <url/>
+    <name>name</name>
+    <url>url</url>
   </organization>
+
   <licenses>
     <license>
       <name/>

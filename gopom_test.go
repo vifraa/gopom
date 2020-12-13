@@ -74,3 +74,12 @@ func TestParsing_Project(t *testing.T) {
 		}
 	}
 }
+
+func TestParsing_Organization(t *testing.T) {
+	if p.Organization.Name != "name" {
+		t.Error("Organization.Name: expected 'name', got: " + p.Organization.Name)
+	}
+	if p.Organization.URL != "url" {
+		t.Error("Organization.URL: expected 'url', got: " + p.Organization.URL)
+	}
+}
