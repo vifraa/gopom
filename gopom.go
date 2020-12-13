@@ -40,7 +40,7 @@ type Project struct {
 	Organization         Organization         `xml:"organization"`
 	Licenses             []License            `xml:"licenses>license"`
 	Developers           []Developer          `xml:"developers>developer"`
-	Contributors         []Contributor        `xml:"contributors"`
+	Contributors         []Contributor        `xml:"contributors>contributor"`
 	MailingLists         []MailingList        `xml:"mailingLists"`
 	Prerequisites        Prerequisites        `xml:"prerequisites"`
 	Modules              []string             `xml:"modules>module"`
@@ -88,13 +88,14 @@ type Developer struct {
 }
 
 type Contributor struct {
-	Name            string `xml:"name"`
-	Email           string `xml:"email"`
-	URL             string `xml:"url"`
-	Organization    string `xml:"organization"`
-	OrganizationURL string `xml:"organizationUrl"`
-	Roles           string `xml:"roles>role"`
-	Timezone        string `xml:"timezone"`
+	Name            string   `xml:"name"`
+	Email           string   `xml:"email"`
+	URL             string   `xml:"url"`
+	Organization    string   `xml:"organization"`
+	OrganizationURL string   `xml:"organizationUrl"`
+	Roles           []string `xml:"roles>role"`
+	Timezone        string   `xml:"timezone"`
+	// TODO Implement properties/key=value
 }
 
 type MailingList struct {
