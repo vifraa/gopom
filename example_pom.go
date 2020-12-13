@@ -11,15 +11,17 @@ var examplePom = `
     <relativePath>../pom.xml</relativePath>
   </parent>
  
-  <groupId/>
-  <artifactId/>
-  <version/>
-  <packaging/>
+  <groupId>com.test</groupId>
+  <artifactId>test-application</artifactId>
+  <version>1.0.0</version>
+  <packaging>war</packaging>
  
-  <name/>
-  <description/>
-  <url/>
-  <inceptionYear/>
+  <name>gopom-test</name>
+  <description>pom parser in golang</description>
+  <url>testUrl</url>
+  <inceptionYear>2020</inceptionYear>
+
+
   <organization>
     <name/>
     <url/>
@@ -78,7 +80,10 @@ var examplePom = `
     <maven/>
   </prerequisites>
  
-  <modules/>
+  <modules>
+	<module>module1</module>
+	<module>module2</module>
+  </modules>
  
   <scm>
     <connection/>
