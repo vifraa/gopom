@@ -316,3 +316,19 @@ func TestParsing_DistributionManagement(t *testing.T) {
 	assert.Equal(t, "url", site.URL)
 	assert.Equal(t, "name", site.Name)
 }
+
+func TestParsing_DependencyManagement(t *testing.T) {
+	assert.Equal(t, 1, len(p.DependencyManagement.Dependencies))
+	d := p.DependencyManagement.Dependencies[0]
+	assert.Equal(t, "groupId", d.GroupID)
+	assert.Equal(t, "artifactId", d.ArtifactID)
+	assert.Equal(t, "version", d.Version)
+	assert.Equal(t, "type", d.Type)
+	assert.Equal(t, "classifier", d.Classifier)
+	assert.Equal(t, 1, len(d.Exclusions))
+	assert.Equal(t, "artifactId", d.Exclusions[0].ArtifactID)
+	assert.Equal(t, "groupId", d.Exclusions[0].GroupID)
+	assert.Equal(t, "optional", d.Optional)
+	assert.Equal(t, "scope", d.Scope)
+	assert.Equal(t, "systemPath", d.SystemPath)
+}

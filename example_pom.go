@@ -183,23 +183,24 @@ var examplePom = `
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId/>
-        <artifactId/>
-        <version/>
-        <type/>
-        <classifier/>
-        <scope/>
-        <systemPath/>
+        <groupId>groupId</groupId>
+        <artifactId>artifactId</artifactId>
+        <version>version</version>
+        <type>type</type>
+        <classifier>classifier</classifier>
+        <scope>scope</scope>
+        <systemPath>systemPath</systemPath>
         <exclusions>
           <exclusion>
-            <artifactId/>
-            <groupId/>
+            <artifactId>artifactId</artifactId>
+            <groupId>groupId</groupId>
           </exclusion>
         </exclusions>
-        <optional/>
+        <optional>optional</optional>
       </dependency>
     </dependencies>
   </dependencyManagement>
+
   <dependencies>
     <dependency>
       <groupId/>

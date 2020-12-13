@@ -55,6 +55,7 @@ type Project struct {
 	Build                  Build                  `xml:"build"`
 	Reporting              Reporting              `xml:"reporting"`
 	// TODO Profiles
+	// TODO Properties
 }
 
 type Parent struct {
@@ -179,7 +180,7 @@ type Dependency struct {
 }
 
 type Exclusion struct {
-	ArtifactID string `xml:"artifactID"`
+	ArtifactID string `xml:"artifactId"`
 	GroupID    string `xml:"groupId"`
 }
 
