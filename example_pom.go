@@ -259,117 +259,131 @@ var examplePom = `
   </pluginRepositories>
  
   <build>
-    <sourceDirectory/>
-    <scriptSourceDirectory/>
-    <testSourceDirectory/>
-    <outputDirectory/>
-    <testOutputDirectory/>
+    <sourceDirectory>sourceDirectory</sourceDirectory>
+    <scriptSourceDirectory>scriptSourceDirectory</scriptSourceDirectory>
+    <testSourceDirectory>testSourceDirectory</testSourceDirectory>
+    <outputDirectory>outputDirectory</outputDirectory>
+    <testOutputDirectory>testOutputDirectory</testOutputDirectory>
     <extensions>
       <extension>
-        <groupId/>
-        <artifactId/>
-        <version/>
+        <groupId>groupId</groupId>
+        <artifactId>artifactId</artifactId>
+        <version>version</version>
       </extension>
     </extensions>
-    <defaultGoal/>
+    <defaultGoal>defaultGoal</defaultGoal>
     <resources>
       <resource>
-        <targetPath/>
-        <filtering/>
-        <directory/>
-        <includes/>
-        <excludes/>
+        <targetPath>targetPath</targetPath>
+        <filtering>filtering</filtering>
+        <directory>directory</directory>
+        <includes>
+			<include>include</include>
+		</includes>
+        <excludes>
+			<exclude>exclude</exclude>
+		</excludes>
       </resource>
     </resources>
     <testResources>
       <testResource>
-        <targetPath/>
-        <filtering/>
-        <directory/>
-        <includes/>
-        <excludes/>
+        <targetPath>targetPath</targetPath>
+        <filtering>filtering</filtering>
+        <directory>directory</directory>
+        <includes>
+			<include>include</include>
+		</includes>
+        <excludes>
+			<exclude>exclude</exclude>
+		</excludes>
       </testResource>
     </testResources>
-    <directory/>
-    <finalName/>
-    <filters/>
+    <directory>directory</directory>
+    <finalName>finalName</finalName>
+    <filters>
+		<filter>filter1</filter>
+	</filters>
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId/>
-          <artifactId/>
-          <version/>
-          <extensions/>
+          <groupId>groupId</groupId>
+          <artifactId>artifactId</artifactId>
+          <version>version</version>
+          <extensions>extensions</extensions>
           <executions>
             <execution>
-              <id/>
-              <phase/>
-              <goals/>
-              <inherited/>
-              <configuration/>
+              <id>id</id>
+              <phase>phase</phase>
+              <goals>
+				<goal>goal</goal>
+ 		      </goals>
+              <inherited>inherited</inherited>
+              <configuration>configuration</configuration>
             </execution>
           </executions>
           <dependencies>
             <dependency>
-              <groupId/>
-              <artifactId/>
-              <version/>
-              <type/>
-              <classifier/>
-              <scope/>
-              <systemPath/>
+              <groupId>groupId</groupId>
+              <artifactId>artifactId</artifactId>
+              <version>version</version>
+              <type>type</type>
+              <classifier>classifier</classifier>
+              <scope>scope</scope>
+              <systemPath>systemPath</systemPath>
               <exclusions>
                 <exclusion>
-                  <artifactId/>
-                  <groupId/>
+                  <artifactId>artifactId</artifactId>
+                  <groupId>groupId</groupId>
                 </exclusion>
               </exclusions>
-              <optional/>
+              <optional>optional</optional>
             </dependency>
           </dependencies>
-          <goals/>
-          <inherited/>
-          <configuration/>
+          <goals>goals</goals>
+          <inherited>inherited</inherited>
+          <configuration>configuration</configuration>
         </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
       <plugin>
-        <groupId/>
-        <artifactId/>
-        <version/>
-        <extensions/>
-        <executions>
-          <execution>
-            <id/>
-            <phase/>
-            <goals/>
-            <inherited/>
-            <configuration/>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId/>
-            <artifactId/>
-            <version/>
-            <type/>
-            <classifier/>
-            <scope/>
-            <systemPath/>
-            <exclusions>
-              <exclusion>
-                <artifactId/>
-                <groupId/>
-              </exclusion>
-            </exclusions>
-            <optional/>
-          </dependency>
-        </dependencies>
-        <goals/>
-        <inherited/>
-        <configuration/>
-      </plugin>
+          <groupId>groupId</groupId>
+          <artifactId>artifactId</artifactId>
+          <version>version</version>
+          <extensions>extensions</extensions>
+          <executions>
+            <execution>
+              <id>id</id>
+              <phase>phase</phase>
+              <goals>
+				<goal>goal</goal>
+ 		      </goals>
+              <inherited>inherited</inherited>
+              <configuration>configuration</configuration>
+            </execution>
+          </executions>
+          <dependencies>
+            <dependency>
+              <groupId>groupId</groupId>
+              <artifactId>artifactId</artifactId>
+              <version>version</version>
+              <type>type</type>
+              <classifier>classifier</classifier>
+              <scope>scope</scope>
+              <systemPath>systemPath</systemPath>
+              <exclusions>
+                <exclusion>
+                  <artifactId>artifactId</artifactId>
+                  <groupId>groupId</groupId>
+                </exclusion>
+              </exclusions>
+              <optional>optional</optional>
+            </dependency>
+          </dependencies>
+          <goals>goals</goals>
+          <inherited>inherited</inherited>
+          <configuration>configuration</configuration>
+        </plugin>
     </plugins>
   </build>
  

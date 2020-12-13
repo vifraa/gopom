@@ -218,17 +218,17 @@ type Build struct {
 	Extensions            []Extension      `xml:"extensions>extension"`
 	DefaultGoal           string           `xml:"defaultGoal"`
 	Resources             []Resource       `xml:"resources>resource"`
-	TestResource          []Resource       `xml:"testResources>testResource"`
+	TestResources         []Resource       `xml:"testResources>testResource"`
 	Directory             string           `xml:"directory"`
 	FinalName             string           `xml:"finalName"`
-	Filters               string           `xml:"filters>filter"`
+	Filters               []string         `xml:"filters>filter"`
 	PluginManagement      PluginManagement `xml:"pluginManagement"`
 	Plugins               []Plugin         `xml:"plugins>plugin"`
 }
 
 type Extension struct {
 	GroupID    string `xml:"groupId"`
-	ArtifactID string `xml:"ArtifactId"`
+	ArtifactID string `xml:"artifactId"`
 	Version    string `xml:"version"`
 }
 
