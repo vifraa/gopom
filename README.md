@@ -34,7 +34,7 @@ func main() {
 }
 ```
 
-If one already has the pom.xml loaded as a string or bytes you can use `encoding/xml` from standard library.  
+If one already has the pom.xml loaded as a string or bytes you can use `encoding/xml` from the standard library.  
 This can be seen below:
 ```go
 package main
