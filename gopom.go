@@ -126,7 +126,7 @@ type IssueManagement struct {
 type CIManagement struct {
 	System    string     `xml:"system"`
 	URL       string     `xml:"url"`
-	Notifiers []Notifier `xml:"notifiers"`
+	Notifiers []Notifier `xml:"notifiers>notifier"`
 }
 
 type Notifier struct {
@@ -136,6 +136,7 @@ type Notifier struct {
 	SendOnSuccess bool   `xml:"sendOnSuccess"`
 	SendOnWarning bool   `xml:"sendOnWarning"`
 	Address       string `xml:"address"`
+	// TODO add Configuration field
 }
 
 type DependencyManagement struct {

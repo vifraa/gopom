@@ -109,16 +109,16 @@ var examplePom = `
   </issueManagement>
 
   <ciManagement>
-    <system/>
-    <url/>
+    <system>system</system>
+    <url>url</url>
     <notifiers>
       <notifier>
-        <type/>
-        <sendOnError/>
-        <sendOnFailure/>
-        <sendOnSuccess/>
-        <sendOnWarning/>
-        <address/>
+        <type>type</type>
+        <sendOnError>true</sendOnError>
+        <sendOnFailure>true</sendOnFailure>
+        <sendOnSuccess>true</sendOnSuccess>
+        <sendOnWarning>true</sendOnWarning>
+        <address>address</address>
         <configuration>
           <key>value</key>
         </configuration>

@@ -237,3 +237,37 @@ func TestParsing_IssueManagement(t *testing.T) {
 		t.Error("IssueManagement.System: expected 'system', got: " + p.IssueManagement.System)
 	}
 }
+
+func TestParsing_CIManagement(t *testing.T) {
+	if p.CIManagement.System != "system" {
+		t.Error("CIManagement.System: expected 'system', got: " + p.CIManagement.System)
+	}
+	if p.CIManagement.URL != "url" {
+		t.Error("CIManagement.URL: expected 'url', got: " + p.CIManagement.URL)
+	}
+}
+
+func TestParsing_Notifiers(t *testing.T) {
+	if len(p.CIManagement.Notifiers) != 1 {
+		t.Error("CIManagement.Notifiers: expected len==1, got: " + strconv.Itoa(len(p.CIManagement.Notifiers)))
+	}
+	n := p.CIManagement.Notifiers[0]
+	if n.Type != "type" {
+		t.Error("CIManagement.Notifiers.Type: expected 'type', got: " + n.Type)
+	}
+	if n.Address != "address" {
+		t.Error("CIManagement.Notifiers.Address: expected 'type', got: " + n.Address)
+	}
+	if n.SendOnError != true {
+		t.Error("CIManagement.Notifiers.SendOnError: expected 'true', got: " + strconv.FormatBool(n.SendOnError))
+	}
+	if n.SendOnFailure != true {
+		t.Error("CIManagement.Notifiers.SendOnFailure: expected 'true', got: " + strconv.FormatBool(n.SendOnFailure))
+	}
+	if n.SendOnSuccess != true {
+		t.Error("CIManagement.Notifiers.SendOnSuccess: expected 'true', got: " + strconv.FormatBool(n.SendOnSuccess))
+	}
+	if n.SendOnWarning != true {
+		t.Error("CIManagement.Notifiers.SendOnWarning: expected 'true', got: " + strconv.FormatBool(n.SendOnWarning))
+	}
+}
