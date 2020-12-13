@@ -262,7 +262,21 @@ type PluginExecution struct {
 }
 
 type Reporting struct {
-	ExcludeDefaults string   `xml:"excludeDefaults"`
-	OutputDirectory string   `xml:"outputDirectory"`
-	Plugins         []Plugin `xml:"plugins>plugin"`
+	ExcludeDefaults string            `xml:"excludeDefaults"`
+	OutputDirectory string            `xml:"outputDirectory"`
+	Plugins         []ReportingPlugin `xml:"plugins>plugin"`
+}
+
+type ReportingPlugin struct {
+	GroupID    string      `xml:"groupId"`
+	ArtifactID string      `xml:"artifactId"`
+	Version    string      `xml:"version"`
+	Inherited  string      `xml:"inherited"`
+	ReportSets []ReportSet `xml:"reportSets>reportSet"`
+}
+
+type ReportSet struct {
+	ID        string   `xml:"id"`
+	Reports   []string `xml:"reports>report"`
+	Inherited string   `xml:"inherited"`
 }

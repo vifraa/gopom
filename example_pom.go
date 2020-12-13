@@ -389,23 +389,25 @@ var examplePom = `
  
   <reports/>
   <reporting>
-    <excludeDefaults/>
-    <outputDirectory/>
+    <excludeDefaults>excludeDefaults</excludeDefaults>
+    <outputDirectory>outputDirectory</outputDirectory>
     <plugins>
       <plugin>
-        <groupId/>
-        <artifactId/>
-        <version/>
+        <groupId>groupId</groupId>
+        <artifactId>artifactId</artifactId>
+        <version>version</version>
         <reportSets>
           <reportSet>
-            <id/>
-            <reports/>
-            <inherited/>
-            <configuration/>
+            <id>id</id>
+            <reports>
+			  <report>report</report>
+		    </reports>
+            <inherited>inherited</inherited>
+            <configuration>configuration</configuration>
           </reportSet>
         </reportSets>
-        <inherited/>
-        <configuration/>
+        <inherited>inherited</inherited>
+        <configuration>configuration</configuration>
       </plugin>
     </plugins>
   </reporting>

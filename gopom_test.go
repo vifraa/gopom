@@ -469,3 +469,20 @@ func TestParsing_Build(t *testing.T) {
 	assert.Equal(t, "scope", d.Scope)
 	assert.Equal(t, "systemPath", d.SystemPath)
 }
+
+func TestParsing_Reporting(t *testing.T) {
+	assert.Equal(t, "excludeDefaults", p.Reporting.ExcludeDefaults)
+	assert.Equal(t, "outputDirectory", p.Reporting.OutputDirectory)
+	assert.Equal(t, "outputDirectory", p.Reporting.OutputDirectory)
+
+	pl := p.Reporting.Plugins
+	assert.Equal(t, 1, len(pl))
+	assert.Equal(t, "groupId", pl[0].GroupID)
+	assert.Equal(t, "artifactId", pl[0].ArtifactID)
+	assert.Equal(t, "version", pl[0].Version)
+	assert.Equal(t, 1, len(pl[0].ReportSets))
+	assert.Equal(t, "id", pl[0].ReportSets[0].ID)
+	assert.Equal(t, 1, len(pl[0].ReportSets[0].Reports))
+	assert.Equal(t, "report", pl[0].ReportSets[0].Reports[0])
+	assert.Equal(t, "inherited", pl[0].ReportSets[0].Inherited)
+}
