@@ -39,7 +39,7 @@ type Project struct {
 	InceptionYear        string               `xml:"inceptionYear"`
 	Organization         Organization         `xml:"organization"`
 	Licenses             []License            `xml:"licenses>license"`
-	Developers           []Developer          `xml:"developers"`
+	Developers           []Developer          `xml:"developers>developer"`
 	Contributors         []Contributor        `xml:"contributors"`
 	MailingLists         []MailingList        `xml:"mailingLists"`
 	Prerequisites        Prerequisites        `xml:"prerequisites"`
@@ -84,6 +84,7 @@ type Developer struct {
 	OrganizationURL string   `xml:"organizationUrl"`
 	Roles           []string `xml:"roles>role"`
 	Timezone        string   `xml:"timezone"`
+	// TODO Implement properties/key=value
 }
 
 type Contributor struct {
