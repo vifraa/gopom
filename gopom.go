@@ -140,7 +140,7 @@ type Notifier struct {
 }
 
 type DependencyManagement struct {
-	Dependencies []Dependency `xml:"dependencies"`
+	Dependencies []Dependency `xml:"dependencies>dependency"`
 }
 
 type Dependency struct {
@@ -151,7 +151,7 @@ type Dependency struct {
 	Classifier string      `xml:"classifier"`
 	Scope      string      `xml:"scope"`
 	SystemPath string      `xml:"systemPath"`
-	Exclusions []Exclusion `xml:"exclusions"`
+	Exclusions []Exclusion `xml:"exclusions>exclusion"`
 	Optional   string      `xml:"optional"`
 }
 
@@ -191,15 +191,15 @@ type Build struct {
 	TestSourceDirectory   string           `xml:"testSourceDirectory"`
 	OutputDirectory       string           `xml:"outputDirectory"`
 	TestOutputDirectory   string           `xml:"testOutputDirectory"`
-	Extensions            []Extension      `xml:"extensions"`
+	Extensions            []Extension      `xml:"extensions>extension"`
 	DefaultGoal           string           `xml:"defaultGoal"`
-	Resources             []Resource       `xml:"resources"`
-	TestResource          []Resource       `xml:"testResources"`
+	Resources             []Resource       `xml:"resources>resource"`
+	TestResource          []Resource       `xml:"testResources>testResource"`
 	Directory             string           `xml:"directory"`
 	FinalName             string           `xml:"finalName"`
 	Filters               string           `xml:"filters>filter"`
 	PluginManagement      PluginManagement `xml:"pluginManagement"`
-	Plugins               []Plugin         `xml:"plugins"`
+	Plugins               []Plugin         `xml:"plugins>plugin"`
 }
 
 type Extension struct {
@@ -217,7 +217,7 @@ type Resource struct {
 }
 
 type PluginManagement struct {
-	Plugins []Plugin `xml:"plugins"`
+	Plugins []Plugin `xml:"plugins>plugin"`
 }
 
 type Plugin struct {
@@ -225,8 +225,8 @@ type Plugin struct {
 	ArtifactID   string            `xml:"artifactId"`
 	Version      string            `xml:"version"`
 	Extensions   string            `xml:"extensions"`
-	Executions   []PluginExecution `xml:"executions"`
-	Dependencies []Dependency      `xml:"dependencies"`
+	Executions   []PluginExecution `xml:"executions>execution"`
+	Dependencies []Dependency      `xml:"dependencies>dependency"`
 	Inherited    string            `xml:"inherited"`
 }
 
@@ -240,5 +240,5 @@ type PluginExecution struct {
 type Reporting struct {
 	ExcludeDefaults string   `xml:"excludeDefaults"`
 	OutputDirectory string   `xml:"outputDirectory"`
-	Plugins         []Plugin `xml:"plugins"`
+	Plugins         []Plugin `xml:"plugins>plugin"`
 }
