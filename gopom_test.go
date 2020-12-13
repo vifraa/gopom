@@ -3,6 +3,7 @@ package gopom
 import (
 	"encoding/xml"
 	"fmt"
+	"github.com/stretchr/testify/assert"
 	"os"
 	"strconv"
 	"testing"
@@ -270,4 +271,48 @@ func TestParsing_Notifiers(t *testing.T) {
 	if n.SendOnWarning != true {
 		t.Error("CIManagement.Notifiers.SendOnWarning: expected 'true', got: " + strconv.FormatBool(n.SendOnWarning))
 	}
+}
+
+func TestParsing_DistributionManagement(t *testing.T) {
+	assert.Equal(t, "downloadUrl", p.DistributionManagement.DownloadURL)
+	assert.Equal(t, "status", p.DistributionManagement.Status)
+	assert.Equal(t, "name", p.DistributionManagement.Repository.Name)
+	assert.Equal(t, "url", p.DistributionManagement.Repository.URL)
+	assert.Equal(t, "layout", p.DistributionManagement.Repository.Layout)
+	assert.Equal(t, true, p.DistributionManagement.Repository.UniqueVersion)
+	assert.Equal(t, "id", p.DistributionManagement.Repository.ID)
+	r := p.DistributionManagement.Repository.Releases
+	assert.Equal(t, "checksumPolicy", r.ChecksumPolicy)
+	assert.Equal(t, "enabled", r.Enabled)
+	assert.Equal(t, "updatePolicy", r.UpdatePolicy)
+	s := p.DistributionManagement.Repository.Snapshots
+	assert.Equal(t, "checksumPolicy", s.ChecksumPolicy)
+	assert.Equal(t, "enabled", s.Enabled)
+	assert.Equal(t, "updatePolicy", s.UpdatePolicy)
+
+	sr := p.DistributionManagement.SnapshotRepository
+	assert.Equal(t, "name", sr.Name)
+	assert.Equal(t, "url", sr.URL)
+	assert.Equal(t, "layout", sr.Layout)
+	assert.Equal(t, true, sr.UniqueVersion)
+	assert.Equal(t, "id", sr.ID)
+	r = sr.Releases
+	assert.Equal(t, "checksumPolicy", r.ChecksumPolicy)
+	assert.Equal(t, "enabled", r.Enabled)
+	assert.Equal(t, "updatePolicy", r.UpdatePolicy)
+	s = sr.Snapshots
+	assert.Equal(t, "checksumPolicy", s.ChecksumPolicy)
+	assert.Equal(t, "enabled", s.Enabled)
+	assert.Equal(t, "updatePolicy", s.UpdatePolicy)
+
+	rel := p.DistributionManagement.Relocation
+	assert.Equal(t, "version", rel.Version)
+	assert.Equal(t, "artifactId", rel.ArtifactID)
+	assert.Equal(t, "groupId", rel.GroupID)
+	assert.Equal(t, "message", rel.Message)
+
+	site := p.DistributionManagement.Site
+	assert.Equal(t, "id", site.ID)
+	assert.Equal(t, "url", site.URL)
+	assert.Equal(t, "name", site.Name)
 }

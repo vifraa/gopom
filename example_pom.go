@@ -128,52 +128,52 @@ var examplePom = `
  
   <distributionManagement>
     <repository>
-      <uniqueVersion/>
+      <uniqueVersion>true</uniqueVersion>
       <releases>
-        <enabled/>
-        <updatePolicy/>
-        <checksumPolicy/>
+        <enabled>enabled</enabled>
+        <updatePolicy>updatePolicy</updatePolicy>
+        <checksumPolicy>checksumPolicy</checksumPolicy>
       </releases>
       <snapshots>
-        <enabled/>
-        <updatePolicy/>
-        <checksumPolicy/>
+        <enabled>enabled</enabled>
+        <updatePolicy>updatePolicy</updatePolicy>
+        <checksumPolicy>checksumPolicy</checksumPolicy>
       </snapshots>
-      <id/>
-      <name/>
-      <url/>
-      <layout/>
+      <id>id</id>
+      <name>name</name>
+      <url>url</url>
+      <layout>layout</layout>
     </repository>
     <snapshotRepository>
-      <uniqueVersion/>
+      <uniqueVersion>true</uniqueVersion>
       <releases>
-        <enabled/>
-        <updatePolicy/>
-        <checksumPolicy/>
+        <enabled>enabled</enabled>
+        <updatePolicy>updatePolicy</updatePolicy>
+        <checksumPolicy>checksumPolicy</checksumPolicy>
       </releases>
       <snapshots>
-        <enabled/>
-        <updatePolicy/>
-        <checksumPolicy/>
+        <enabled>enabled</enabled>
+        <updatePolicy>updatePolicy</updatePolicy>
+        <checksumPolicy>checksumPolicy</checksumPolicy>
       </snapshots>
-      <id/>
-      <name/>
-      <url/>
-      <layout/>
+      <id>id</id>
+      <name>name</name>
+      <url>url</url>
+      <layout>layout</layout>
     </snapshotRepository>
     <site>
-      <id/>
-      <name/>
-      <url/>
+      <id>id</id>
+      <name>name</name>
+      <url>url</url>
     </site>
-    <downloadUrl/>
+    <downloadUrl>downloadUrl</downloadUrl>
     <relocation>
-      <groupId/>
-      <artifactId/>
-      <version/>
-      <message/>
+      <groupId>groupId</groupId>
+      <artifactId>artifactId</artifactId>
+      <version>version</version>
+      <message>message</message>
     </relocation>
-    <status/>
+    <status>status</status>
   </distributionManagement>
  
   <properties>
