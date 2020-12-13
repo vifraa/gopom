@@ -26,33 +26,34 @@ func Parse(path string) (*Project, error) {
 }
 
 type Project struct {
-	XMLName              xml.Name             `xml:"project"`
-	ModelVersion         string               `xml:"modelVersion"`
-	Parent               Parent               `xml:"parent"`
-	GroupID              string               `xml:"groupId"`
-	ArtifactID           string               `xml:"artifactId"`
-	Version              string               `xml:"version"`
-	Packaging            string               `xml:"packaging"`
-	Name                 string               `xml:"name"`
-	Description          string               `xml:"description"`
-	URL                  string               `xml:"url"`
-	InceptionYear        string               `xml:"inceptionYear"`
-	Organization         Organization         `xml:"organization"`
-	Licenses             []License            `xml:"licenses>license"`
-	Developers           []Developer          `xml:"developers>developer"`
-	Contributors         []Contributor        `xml:"contributors>contributor"`
-	MailingLists         []MailingList        `xml:"mailingLists>mailingList"`
-	Prerequisites        Prerequisites        `xml:"prerequisites"`
-	Modules              []string             `xml:"modules>module"`
-	SCM                  Scm                  `xml:"scm"`
-	IssueManagement      IssueManagement      `xml:"issueManagement"`
-	CIManagement         CIManagement         `xml:"ciManagement"`
-	DependencyManagement DependencyManagement `xml:"dependencyManagement"`
-	Dependencies         []Dependency         `xml:"dependencies>dependency"`
-	Repositories         []Repository         `xml:"repositories>repository"`
-	PluginRepositories   []PluginRepository   `xml:"pluginRepositories>pluginRepository"`
-	Build                Build                `xml:"build"`
-	Reporting            Reporting            `xml:"reporting"`
+	XMLName                xml.Name               `xml:"project"`
+	ModelVersion           string                 `xml:"modelVersion"`
+	Parent                 Parent                 `xml:"parent"`
+	GroupID                string                 `xml:"groupId"`
+	ArtifactID             string                 `xml:"artifactId"`
+	Version                string                 `xml:"version"`
+	Packaging              string                 `xml:"packaging"`
+	Name                   string                 `xml:"name"`
+	Description            string                 `xml:"description"`
+	URL                    string                 `xml:"url"`
+	InceptionYear          string                 `xml:"inceptionYear"`
+	Organization           Organization           `xml:"organization"`
+	Licenses               []License              `xml:"licenses>license"`
+	Developers             []Developer            `xml:"developers>developer"`
+	Contributors           []Contributor          `xml:"contributors>contributor"`
+	MailingLists           []MailingList          `xml:"mailingLists>mailingList"`
+	Prerequisites          Prerequisites          `xml:"prerequisites"`
+	Modules                []string               `xml:"modules>module"`
+	SCM                    Scm                    `xml:"scm"`
+	IssueManagement        IssueManagement        `xml:"issueManagement"`
+	CIManagement           CIManagement           `xml:"ciManagement"`
+	DistributionManagement DistributionManagement `xml:"distributionManagement"`
+	DependencyManagement   DependencyManagement   `xml:"dependencyManagement"`
+	Dependencies           []Dependency           `xml:"dependencies>dependency"`
+	Repositories           []Repository           `xml:"repositories>repository"`
+	PluginRepositories     []PluginRepository     `xml:"pluginRepositories>pluginRepository"`
+	Build                  Build                  `xml:"build"`
+	Reporting              Reporting              `xml:"reporting"`
 	// TODO Profiles
 }
 
@@ -139,6 +140,28 @@ type Notifier struct {
 	// TODO add Configuration field
 }
 
+type DistributionManagement struct {
+	Repository         Repository `xml:"repository"`
+	SnapshotRepository Repository `xml:"snapshotRepository"`
+	Site               Site       `xml:"site"`
+	DownloadURL        string     `xml:"downloadUrl"`
+	Relocation         Relocation `xml:"relocation"`
+	Status             string     `xml:"status"`
+}
+
+type Site struct {
+	ID   string `xml:"id"`
+	Name string `xml:"name"`
+	URL  string `xml:"url"`
+}
+
+type Relocation struct {
+	GroupID    string `xml:"groupId"`
+	ArtifactID string `xml:"artifactId"`
+	Version    string `xml:"version"`
+	Message    string `xml:"message"`
+}
+
 type DependencyManagement struct {
 	Dependencies []Dependency `xml:"dependencies>dependency"`
 }
@@ -166,7 +189,7 @@ type Repository struct {
 	Snapshots     RepositoryPolicy `xml:"snapshots"`
 	ID            string           `xml:"id"`
 	Name          string           `xml:"name"`
-	URL           string           `xml:"URL"`
+	URL           string           `xml:"url"`
 	Layout        string           `xml:"layout"`
 }
 
