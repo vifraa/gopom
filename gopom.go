@@ -1,9 +1,30 @@
 package gopom
 
-import "encoding/xml"
+import (
+	"encoding/xml"
+	"io/ioutil"
+	"os"
+)
 
 // https://maven.apache.org/ref/3.6.3/maven-model/maven.html#class_dependency
 
+
+func Parse(path string) (*Project, error) {
+	file, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+
+	b, _ := ioutil.ReadAll(file)
+	var project Project
+
+	err = xml.Unmarshal(b, &project)
+	if err != nil {
+		return nil, err
+	}
+	return &project, nil
+}
 
 type Project struct {
 	XMLName xml.Name `xml:"project"`
