@@ -213,3 +213,18 @@ func TestParsing_Prerequisites(t *testing.T) {
 		t.Error("Prerequisites.Maven: expected '2.0', got: " + p.Prerequisites.Maven)
 	}
 }
+
+func TestParsing_SCM(t *testing.T) {
+	if p.SCM.URL != "url" {
+		t.Error("SCM.URL: expected 'url', got: " + p.SCM.URL)
+	}
+	if p.SCM.Connection != "connection" {
+		t.Error("SCM.Connection: expected 'connection', got: " + p.SCM.Connection)
+	}
+	if p.SCM.DeveloperConnection != "developerConnection" {
+		t.Error("SCM.DeveloperConnection: expected 'developerConnection', got: " + p.SCM.DeveloperConnection)
+	}
+	if p.SCM.Tag != "tag" {
+		t.Error("SCM.Tag: expected 'tag', got: " + p.SCM.Tag)
+	}
+}

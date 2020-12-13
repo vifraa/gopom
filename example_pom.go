@@ -97,15 +97,17 @@ var examplePom = `
   </modules>
  
   <scm>
-    <connection/>
-    <developerConnection/>
-    <tag/>
-    <url/>
+    <connection>connection</connection>
+    <developerConnection>developerConnection</developerConnection>
+    <tag>tag</tag>
+    <url>url</url>
   </scm>
+
   <issueManagement>
     <system/>
     <url/>
   </issueManagement>
+
   <ciManagement>
     <system/>
     <url/>
