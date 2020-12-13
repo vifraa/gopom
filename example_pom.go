@@ -28,10 +28,10 @@ var examplePom = `
 
   <licenses>
     <license>
-      <name/>
-      <url/>
-      <distribution/>
-      <comments/>
+      <name>name</name>
+      <url>url</url>
+      <distribution>manual</distribution>
+      <comments>comments</comments>
     </license>
   </licenses>
  

@@ -83,3 +83,21 @@ func TestParsing_Organization(t *testing.T) {
 		t.Error("Organization.URL: expected 'url', got: " + p.Organization.URL)
 	}
 }
+
+func TestParsing_Licenses(t *testing.T) {
+	if len(p.Licenses) != 1 {
+		t.Error("Licenses: expected len==1, got: " + strconv.Itoa(len(p.Licenses)))
+	}
+	if p.Licenses[0].Name != "name" {
+		t.Error("Licenses.Name: expected 'name', got: " + p.Licenses[0].Name)
+	}
+	if p.Licenses[0].URL != "url" {
+		t.Error("Licenses.URL: expected 'url', got: " + p.Licenses[0].URL)
+	}
+	if p.Licenses[0].Distribution != "manual" {
+		t.Error("Licenses.Distribution: expected 'manual', got: " + p.Licenses[0].Distribution)
+	}
+	if p.Licenses[0].Comments != "comments" {
+		t.Error("Licenses.Comments: expected 'comments', got: " + p.Licenses[0].Comments)
+	}
+}
