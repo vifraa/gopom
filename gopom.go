@@ -205,7 +205,7 @@ type PluginRepository struct {
 	Snapshots RepositoryPolicy `xml:"snapshots"`
 	ID        string           `xml:"id"`
 	Name      string           `xml:"name"`
-	URL       string           `xml:"URL"`
+	URL       string           `xml:"url"`
 	Layout    string           `xml:"layout"`
 }
 

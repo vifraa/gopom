@@ -363,3 +363,18 @@ func TestParsing_Repositories(t *testing.T) {
 	assert.Equal(t, "checksumPolicy", r.Snapshots.ChecksumPolicy)
 	assert.Equal(t, "updatePolicy", r.Snapshots.UpdatePolicy)
 }
+
+func TestParsing_PluginRepositories(t *testing.T) {
+	assert.Equal(t, 1, len(p.PluginRepositories))
+	pr := p.PluginRepositories[0]
+	assert.Equal(t, "id", pr.ID)
+	assert.Equal(t, "name", pr.Name)
+	assert.Equal(t, "url", pr.URL)
+	assert.Equal(t, "layout", pr.Layout)
+	assert.Equal(t, "enabled", pr.Releases.Enabled)
+	assert.Equal(t, "checksumPolicy", pr.Releases.ChecksumPolicy)
+	assert.Equal(t, "updatePolicy", pr.Releases.UpdatePolicy)
+	assert.Equal(t, "enabled", pr.Snapshots.Enabled)
+	assert.Equal(t, "checksumPolicy", pr.Snapshots.ChecksumPolicy)
+	assert.Equal(t, "updatePolicy", pr.Snapshots.UpdatePolicy)
+}
