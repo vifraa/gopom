@@ -88,7 +88,7 @@ var examplePom = `
   </mailingLists>
  
   <prerequisites>
-    <maven/>
+    <maven>2.0</maven>
   </prerequisites>
  
   <modules>

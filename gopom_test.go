@@ -207,3 +207,9 @@ func TestParse_MailingLists(t *testing.T) {
 		t.Error("MailingLists[0].OtherArchives[1]: expected 'archive2', got: " + m.OtherArchives[1])
 	}
 }
+
+func TestParsing_Prerequisites(t *testing.T) {
+	if p.Prerequisites.Maven != "2.0" {
+		t.Error("Prerequisites.Maven: expected '2.0', got: " + p.Prerequisites.Maven)
+	}
+}
