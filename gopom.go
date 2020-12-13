@@ -38,7 +38,7 @@ type Project struct {
 	URL                  string               `xml:"url"`
 	InceptionYear        string               `xml:"inceptionYear"`
 	Organization         Organization         `xml:"organization"`
-	Licenses             []License            `xml:"licenses"`
+	Licenses             []License            `xml:"licenses>license"`
 	Developers           []Developer          `xml:"developers"`
 	Contributors         []Contributor        `xml:"contributors"`
 	MailingLists         []MailingList        `xml:"mailingLists"`
