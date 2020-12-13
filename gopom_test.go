@@ -228,3 +228,12 @@ func TestParsing_SCM(t *testing.T) {
 		t.Error("SCM.Tag: expected 'tag', got: " + p.SCM.Tag)
 	}
 }
+
+func TestParsing_IssueManagement(t *testing.T) {
+	if p.IssueManagement.URL != "url" {
+		t.Error("IssueManagement.URL: expected 'url', got: " + p.IssueManagement.URL)
+	}
+	if p.IssueManagement.System != "system" {
+		t.Error("IssueManagement.System: expected 'system', got: " + p.IssueManagement.System)
+	}
+}

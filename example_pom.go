@@ -104,8 +104,8 @@ var examplePom = `
   </scm>
 
   <issueManagement>
-    <system/>
-    <url/>
+    <system>system</system>
+    <url>url</url>
   </issueManagement>
 
   <ciManagement>
