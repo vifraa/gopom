@@ -486,3 +486,211 @@ func TestParsing_Reporting(t *testing.T) {
 	assert.Equal(t, "report", pl[0].ReportSets[0].Reports[0])
 	assert.Equal(t, "inherited", pl[0].ReportSets[0].Inherited)
 }
+
+func TestParsing_Profiles(t *testing.T) {
+	assert.Equal(t, 1, len(p.Profiles))
+	assert.Equal(t, "id", p.Profiles[0].ID)
+	assert.Equal(t, true, p.Profiles[0].Activation.ActiveByDefault)
+	assert.Equal(t, "jdk", p.Profiles[0].Activation.JDK)
+	assert.Equal(t, "name", p.Profiles[0].Activation.OS.Name)
+	assert.Equal(t, "family", p.Profiles[0].Activation.OS.Family)
+	assert.Equal(t, "arch", p.Profiles[0].Activation.OS.Arch)
+	assert.Equal(t, "version", p.Profiles[0].Activation.OS.Version)
+	assert.Equal(t, "name", p.Profiles[0].Activation.Property.Name)
+	assert.Equal(t, "value", p.Profiles[0].Activation.Property.Value)
+	assert.Equal(t, "missing", p.Profiles[0].Activation.File.Missing)
+	assert.Equal(t, "exists", p.Profiles[0].Activation.File.Exists)
+
+	b := p.Profiles[0].Build
+	assert.Equal(t, "directory", b.Directory)
+	assert.Equal(t, "defaultGoal", b.DefaultGoal)
+	assert.Equal(t, "finalName", b.FinalName)
+	assert.Equal(t, 1, len(b.Filters))
+	assert.Equal(t, "filter1", b.Filters[0])
+
+	assert.Equal(t, 1, len(b.Resources))
+	assert.Equal(t, "targetPath", b.Resources[0].TargetPath)
+	assert.Equal(t, "filtering", b.Resources[0].Filtering)
+	assert.Equal(t, "directory", b.Resources[0].Directory)
+	assert.Equal(t, 1, len(b.Resources[0].Includes))
+	assert.Equal(t, "include", b.Resources[0].Includes[0])
+	assert.Equal(t, 1, len(b.Resources[0].Excludes))
+	assert.Equal(t, "exclude", b.Resources[0].Excludes[0])
+
+	assert.Equal(t, 1, len(b.TestResources))
+	assert.Equal(t, "targetPath", b.TestResources[0].TargetPath)
+	assert.Equal(t, "filtering", b.TestResources[0].Filtering)
+	assert.Equal(t, "directory", b.TestResources[0].Directory)
+	assert.Equal(t, 1, len(b.TestResources[0].Includes))
+	assert.Equal(t, "include", b.TestResources[0].Includes[0])
+	assert.Equal(t, 1, len(b.TestResources[0].Excludes))
+	assert.Equal(t, "exclude", b.TestResources[0].Excludes[0])
+
+	pl := b.PluginManagement.Plugins
+	assert.Equal(t, 1, len(pl))
+	assert.Equal(t, "groupId", pl[0].GroupID)
+	assert.Equal(t, "artifactId", pl[0].ArtifactID)
+	assert.Equal(t, "version", pl[0].Version)
+	assert.Equal(t, "extensions", pl[0].Extensions)
+	assert.Equal(t, 1, len(pl[0].Executions))
+	assert.Equal(t, "id", pl[0].Executions[0].ID)
+	assert.Equal(t, "phase", pl[0].Executions[0].Phase)
+	assert.Equal(t, 1, len(pl[0].Executions[0].Goals))
+	assert.Equal(t, "goal", pl[0].Executions[0].Goals[0])
+	assert.Equal(t, "inherited", pl[0].Executions[0].Inherited)
+
+	assert.Equal(t, 1, len(pl[0].Dependencies))
+	d := pl[0].Dependencies[0]
+	assert.Equal(t, "groupId", d.GroupID)
+	assert.Equal(t, "artifactId", d.ArtifactID)
+	assert.Equal(t, "version", d.Version)
+	assert.Equal(t, "type", d.Type)
+	assert.Equal(t, "classifier", d.Classifier)
+	assert.Equal(t, 1, len(d.Exclusions))
+	assert.Equal(t, "artifactId", d.Exclusions[0].ArtifactID)
+	assert.Equal(t, "groupId", d.Exclusions[0].GroupID)
+	assert.Equal(t, "optional", d.Optional)
+	assert.Equal(t, "scope", d.Scope)
+	assert.Equal(t, "systemPath", d.SystemPath)
+
+	pl = b.Plugins
+	assert.Equal(t, 1, len(pl))
+	assert.Equal(t, "groupId", pl[0].GroupID)
+	assert.Equal(t, "artifactId", pl[0].ArtifactID)
+	assert.Equal(t, "version", pl[0].Version)
+	assert.Equal(t, "extensions", pl[0].Extensions)
+	assert.Equal(t, 1, len(pl[0].Executions))
+	assert.Equal(t, "id", pl[0].Executions[0].ID)
+	assert.Equal(t, "phase", pl[0].Executions[0].Phase)
+	assert.Equal(t, 1, len(pl[0].Executions[0].Goals))
+	assert.Equal(t, "goal", pl[0].Executions[0].Goals[0])
+	assert.Equal(t, "inherited", pl[0].Executions[0].Inherited)
+
+	assert.Equal(t, 1, len(pl[0].Dependencies))
+	d = pl[0].Dependencies[0]
+	assert.Equal(t, "groupId", d.GroupID)
+	assert.Equal(t, "artifactId", d.ArtifactID)
+	assert.Equal(t, "version", d.Version)
+	assert.Equal(t, "type", d.Type)
+	assert.Equal(t, "classifier", d.Classifier)
+	assert.Equal(t, 1, len(d.Exclusions))
+	assert.Equal(t, "artifactId", d.Exclusions[0].ArtifactID)
+	assert.Equal(t, "groupId", d.Exclusions[0].GroupID)
+	assert.Equal(t, "optional", d.Optional)
+	assert.Equal(t, "scope", d.Scope)
+	assert.Equal(t, "systemPath", d.SystemPath)
+
+	assert.Equal(t, "module1", p.Profiles[0].Modules[0])
+
+	dm := p.Profiles[0].DistributionManagement
+	assert.Equal(t, "downloadUrl", dm.DownloadURL)
+	assert.Equal(t, "status", dm.Status)
+	assert.Equal(t, "name", dm.Repository.Name)
+	assert.Equal(t, "url", dm.Repository.URL)
+	assert.Equal(t, "layout", dm.Repository.Layout)
+	assert.Equal(t, true, dm.Repository.UniqueVersion)
+	assert.Equal(t, "id", dm.Repository.ID)
+	r := dm.Repository.Releases
+	assert.Equal(t, "checksumPolicy", r.ChecksumPolicy)
+	assert.Equal(t, "enabled", r.Enabled)
+	assert.Equal(t, "updatePolicy", r.UpdatePolicy)
+	s := dm.Repository.Snapshots
+	assert.Equal(t, "checksumPolicy", s.ChecksumPolicy)
+	assert.Equal(t, "enabled", s.Enabled)
+	assert.Equal(t, "updatePolicy", s.UpdatePolicy)
+
+	sr := dm.SnapshotRepository
+	assert.Equal(t, "name", sr.Name)
+	assert.Equal(t, "url", sr.URL)
+	assert.Equal(t, "layout", sr.Layout)
+	assert.Equal(t, true, sr.UniqueVersion)
+	assert.Equal(t, "id", sr.ID)
+	r = sr.Releases
+	assert.Equal(t, "checksumPolicy", r.ChecksumPolicy)
+	assert.Equal(t, "enabled", r.Enabled)
+	assert.Equal(t, "updatePolicy", r.UpdatePolicy)
+	s = sr.Snapshots
+	assert.Equal(t, "checksumPolicy", s.ChecksumPolicy)
+	assert.Equal(t, "enabled", s.Enabled)
+	assert.Equal(t, "updatePolicy", s.UpdatePolicy)
+
+	rel := dm.Relocation
+	assert.Equal(t, "version", rel.Version)
+	assert.Equal(t, "artifactId", rel.ArtifactID)
+	assert.Equal(t, "groupId", rel.GroupID)
+	assert.Equal(t, "message", rel.Message)
+
+	site := dm.Site
+	assert.Equal(t, "id", site.ID)
+	assert.Equal(t, "url", site.URL)
+	assert.Equal(t, "name", site.Name)
+
+	dMan := p.Profiles[0].DependencyManagement
+	assert.Equal(t, 1, len(dMan.Dependencies))
+	d = dMan.Dependencies[0]
+	assert.Equal(t, "groupId", d.GroupID)
+	assert.Equal(t, "artifactId", d.ArtifactID)
+	assert.Equal(t, "version", d.Version)
+	assert.Equal(t, "type", d.Type)
+	assert.Equal(t, "classifier", d.Classifier)
+	assert.Equal(t, 1, len(d.Exclusions))
+	assert.Equal(t, "artifactId", d.Exclusions[0].ArtifactID)
+	assert.Equal(t, "groupId", d.Exclusions[0].GroupID)
+	assert.Equal(t, "optional", d.Optional)
+	assert.Equal(t, "scope", d.Scope)
+	assert.Equal(t, "systemPath", d.SystemPath)
+
+	d = p.Profiles[0].Dependencies[0]
+	assert.Equal(t, "groupId", d.GroupID)
+	assert.Equal(t, "artifactId", d.ArtifactID)
+	assert.Equal(t, "version", d.Version)
+	assert.Equal(t, "type", d.Type)
+	assert.Equal(t, "classifier", d.Classifier)
+	assert.Equal(t, 1, len(d.Exclusions))
+	assert.Equal(t, "artifactId", d.Exclusions[0].ArtifactID)
+	assert.Equal(t, "groupId", d.Exclusions[0].GroupID)
+	assert.Equal(t, "optional", d.Optional)
+	assert.Equal(t, "scope", d.Scope)
+	assert.Equal(t, "systemPath", d.SystemPath)
+
+	rep := p.Profiles[0].Repositories[0]
+	assert.Equal(t, "id", rep.ID)
+	assert.Equal(t, "name", rep.Name)
+	assert.Equal(t, "url", rep.URL)
+	assert.Equal(t, "layout", rep.Layout)
+	assert.Equal(t, "enabled", rep.Releases.Enabled)
+	assert.Equal(t, "checksumPolicy", rep.Releases.ChecksumPolicy)
+	assert.Equal(t, "updatePolicy", rep.Releases.UpdatePolicy)
+	assert.Equal(t, "enabled", rep.Snapshots.Enabled)
+	assert.Equal(t, "checksumPolicy", rep.Snapshots.ChecksumPolicy)
+	assert.Equal(t, "updatePolicy", rep.Snapshots.UpdatePolicy)
+
+	pluRep := p.Profiles[0].PluginRepositories[0]
+	assert.Equal(t, "id", pluRep.ID)
+	assert.Equal(t, "name", pluRep.Name)
+	assert.Equal(t, "url", pluRep.URL)
+	assert.Equal(t, "layout", pluRep.Layout)
+	assert.Equal(t, "enabled", pluRep.Releases.Enabled)
+	assert.Equal(t, "checksumPolicy", pluRep.Releases.ChecksumPolicy)
+	assert.Equal(t, "updatePolicy", pluRep.Releases.UpdatePolicy)
+	assert.Equal(t, "enabled", pluRep.Snapshots.Enabled)
+	assert.Equal(t, "checksumPolicy", pluRep.Snapshots.ChecksumPolicy)
+	assert.Equal(t, "updatePolicy", pluRep.Snapshots.UpdatePolicy)
+
+	reporting := p.Profiles[0].Reporting
+	assert.Equal(t, "excludeDefaults", reporting.ExcludeDefaults)
+	assert.Equal(t, "outputDirectory", reporting.OutputDirectory)
+	assert.Equal(t, "outputDirectory", reporting.OutputDirectory)
+
+	repPl := reporting.Plugins
+	assert.Equal(t, 1, len(repPl))
+	assert.Equal(t, "groupId", repPl[0].GroupID)
+	assert.Equal(t, "artifactId", repPl[0].ArtifactID)
+	assert.Equal(t, "version", repPl[0].Version)
+	assert.Equal(t, "inherited", repPl[0].Inherited)
+	assert.Equal(t, 1, len(repPl[0].ReportSets))
+	assert.Equal(t, "id", repPl[0].ReportSets[0].ID)
+	assert.Equal(t, 1, len(repPl[0].ReportSets[0].Reports))
+	assert.Equal(t, "report", repPl[0].ReportSets[0].Reports[0])
+	assert.Equal(t, "inherited", repPl[0].ReportSets[0].Inherited)
+}

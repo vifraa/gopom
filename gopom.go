@@ -6,8 +6,6 @@ import (
 	"os"
 )
 
-// https://maven.apache.org/ref/3.6.3/maven-model/maven.html#class_dependency
-
 func Parse(path string) (*Project, error) {
 	file, err := os.Open(path)
 	if err != nil {
@@ -54,6 +52,7 @@ type Project struct {
 	PluginRepositories     []PluginRepository     `xml:"pluginRepositories>pluginRepository"`
 	Build                  Build                  `xml:"build"`
 	Reporting              Reporting              `xml:"reporting"`
+	Profiles               []Profile              `xml:"profiles>profile"`
 	// TODO Profiles
 	// TODO Properties
 }
@@ -209,21 +208,25 @@ type PluginRepository struct {
 	Layout    string           `xml:"layout"`
 }
 
+type BuildBase struct {
+	DefaultGoal      string           `xml:"defaultGoal"`
+	Resources        []Resource       `xml:"resources>resource"`
+	TestResources    []Resource       `xml:"testResources>testResource"`
+	Directory        string           `xml:"directory"`
+	FinalName        string           `xml:"finalName"`
+	Filters          []string         `xml:"filters>filter"`
+	PluginManagement PluginManagement `xml:"pluginManagement"`
+	Plugins          []Plugin         `xml:"plugins>plugin"`
+}
+
 type Build struct {
-	SourceDirectory       string           `xml:"sourceDirectory"`
-	ScriptSourceDirectory string           `xml:"scriptSourceDirectory"`
-	TestSourceDirectory   string           `xml:"testSourceDirectory"`
-	OutputDirectory       string           `xml:"outputDirectory"`
-	TestOutputDirectory   string           `xml:"testOutputDirectory"`
-	Extensions            []Extension      `xml:"extensions>extension"`
-	DefaultGoal           string           `xml:"defaultGoal"`
-	Resources             []Resource       `xml:"resources>resource"`
-	TestResources         []Resource       `xml:"testResources>testResource"`
-	Directory             string           `xml:"directory"`
-	FinalName             string           `xml:"finalName"`
-	Filters               []string         `xml:"filters>filter"`
-	PluginManagement      PluginManagement `xml:"pluginManagement"`
-	Plugins               []Plugin         `xml:"plugins>plugin"`
+	SourceDirectory       string      `xml:"sourceDirectory"`
+	ScriptSourceDirectory string      `xml:"scriptSourceDirectory"`
+	TestSourceDirectory   string      `xml:"testSourceDirectory"`
+	OutputDirectory       string      `xml:"outputDirectory"`
+	TestOutputDirectory   string      `xml:"testOutputDirectory"`
+	Extensions            []Extension `xml:"extensions>extension"`
+	BuildBase
 }
 
 type Extension struct {
@@ -279,4 +282,43 @@ type ReportSet struct {
 	ID        string   `xml:"id"`
 	Reports   []string `xml:"reports>report"`
 	Inherited string   `xml:"inherited"`
+}
+
+type Profile struct {
+	ID                     string                 `xml:"id"`
+	Activation             Activation             `xml:"activation"`
+	Build                  BuildBase              `xml:"build"`
+	Modules                []string               `xml:"modules>module"`
+	DistributionManagement DistributionManagement `xml:"distributionManagement"`
+	// TODO properties/key?value*
+	DependencyManagement DependencyManagement `xml:"dependencyManagement"`
+	Dependencies         []Dependency         `xml:"dependencies>dependency"`
+	Repositories         []Repository         `xml:"repositories>repository"`
+	PluginRepositories   []PluginRepository   `xml:"pluginRepositories>pluginRepository"`
+	Reporting            Reporting            `xml:"reporting"`
+}
+
+type Activation struct {
+	ActiveByDefault bool               `xml:"activeByDefault"`
+	JDK             string             `xml:"jdk"`
+	OS              ActivationOS       `xml:"os"`
+	Property        ActivationProperty `xml:"property"`
+	File            ActivationFile     `xml:"file"`
+}
+
+type ActivationOS struct {
+	Name    string `xml:"name"`
+	Family  string `xml:"family"`
+	Arch    string `xml:"arch"`
+	Version string `xml:"version"`
+}
+
+type ActivationProperty struct {
+	Name  string `xml:"name"`
+	Value string `xml:"value"`
+}
+
+type ActivationFile struct {
+	Missing string `xml:"missing"`
+	Exists  string `xml:"exists"`
 }
