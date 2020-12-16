@@ -100,26 +100,26 @@ type License struct {
 }
 
 type Developer struct {
-	ID              string   `xml:"id"`
-	Name            string   `xml:"name"`
-	Email           string   `xml:"email"`
-	URL             string   `xml:"url"`
-	Organization    string   `xml:"organization"`
-	OrganizationURL string   `xml:"organizationUrl"`
-	Roles           []string `xml:"roles>role"`
-	Timezone        string   `xml:"timezone"`
-	// TODO Implement properties/key=value
+	ID              string     `xml:"id"`
+	Name            string     `xml:"name"`
+	Email           string     `xml:"email"`
+	URL             string     `xml:"url"`
+	Organization    string     `xml:"organization"`
+	OrganizationURL string     `xml:"organizationUrl"`
+	Roles           []string   `xml:"roles>role"`
+	Timezone        string     `xml:"timezone"`
+	Properties      Properties `xml:"properties"`
 }
 
 type Contributor struct {
-	Name            string   `xml:"name"`
-	Email           string   `xml:"email"`
-	URL             string   `xml:"url"`
-	Organization    string   `xml:"organization"`
-	OrganizationURL string   `xml:"organizationUrl"`
-	Roles           []string `xml:"roles>role"`
-	Timezone        string   `xml:"timezone"`
-	// TODO Implement properties/key=value
+	Name            string     `xml:"name"`
+	Email           string     `xml:"email"`
+	URL             string     `xml:"url"`
+	Organization    string     `xml:"organization"`
+	OrganizationURL string     `xml:"organizationUrl"`
+	Roles           []string   `xml:"roles>role"`
+	Timezone        string     `xml:"timezone"`
+	Properties      Properties `xml:"properties"`
 }
 
 type MailingList struct {
@@ -154,13 +154,13 @@ type CIManagement struct {
 }
 
 type Notifier struct {
-	Type          string `xml:"type"`
-	SendOnError   bool   `xml:"sendOnError"`
-	SendOnFailure bool   `xml:"sendOnFailure"`
-	SendOnSuccess bool   `xml:"sendOnSuccess"`
-	SendOnWarning bool   `xml:"sendOnWarning"`
-	Address       string `xml:"address"`
-	// TODO add Configuration field
+	Type          string     `xml:"type"`
+	SendOnError   bool       `xml:"sendOnError"`
+	SendOnFailure bool       `xml:"sendOnFailure"`
+	SendOnSuccess bool       `xml:"sendOnSuccess"`
+	SendOnWarning bool       `xml:"sendOnWarning"`
+	Address       string     `xml:"address"`
+	Configuration Properties `xml:"configuration"`
 }
 
 type DistributionManagement struct {
@@ -313,12 +313,12 @@ type Profile struct {
 	Build                  BuildBase              `xml:"build"`
 	Modules                []string               `xml:"modules>module"`
 	DistributionManagement DistributionManagement `xml:"distributionManagement"`
-	// TODO properties/key?value*
-	DependencyManagement DependencyManagement `xml:"dependencyManagement"`
-	Dependencies         []Dependency         `xml:"dependencies>dependency"`
-	Repositories         []Repository         `xml:"repositories>repository"`
-	PluginRepositories   []PluginRepository   `xml:"pluginRepositories>pluginRepository"`
-	Reporting            Reporting            `xml:"reporting"`
+	Properties             Properties             `xml:"properties"`
+	DependencyManagement   DependencyManagement   `xml:"dependencyManagement"`
+	Dependencies           []Dependency           `xml:"dependencies>dependency"`
+	Repositories           []Repository           `xml:"repositories>repository"`
+	PluginRepositories     []PluginRepository     `xml:"pluginRepositories>pluginRepository"`
+	Reporting              Reporting              `xml:"reporting"`
 }
 
 type Activation struct {

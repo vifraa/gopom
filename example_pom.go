@@ -51,6 +51,7 @@ var examplePom = `
       <properties>
         <key>value</key>
         <key2>value2</key2>
+        <key3>value3</key3>
       </properties>
     </developer>
   </developers>
@@ -69,6 +70,8 @@ var examplePom = `
       <timezone>+1</timezone>
       <properties>
         <key>value</key>
+        <key2>value2</key2>
+        <key3>value3</key3>
       </properties>
     </contributor>
   </contributors>
@@ -121,6 +124,8 @@ var examplePom = `
         <address>address</address>
         <configuration>
           <key>value</key>
+          <key2>value2</key2>
+          <key3>value3</key3>
         </configuration>
       </notifier>
     </notifiers>
@@ -616,6 +621,8 @@ var examplePom = `
  
       <properties>
         <key>value</key>
+        <key2>value2</key2>
+        <key3>value3</key3>
       </properties>
  
       <dependencyManagement>
