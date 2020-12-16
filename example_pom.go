@@ -178,6 +178,8 @@ var examplePom = `
  
   <properties>
     <key>value</key>
+    <key2>value2</key2>
+    <key3>value3</key3>
   </properties>
  
   <dependencyManagement>

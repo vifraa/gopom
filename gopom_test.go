@@ -694,3 +694,10 @@ func TestParsing_Profiles(t *testing.T) {
 	assert.Equal(t, "report", repPl[0].ReportSets[0].Reports[0])
 	assert.Equal(t, "inherited", repPl[0].ReportSets[0].Inherited)
 }
+
+func Test_ParsingParentProperties(t *testing.T) {
+	assert.Equal(t, 3, len(p.Properties.Entries))
+	assert.Equal(t, "value", p.Properties.Entries["key"])
+	assert.Equal(t, "value2", p.Properties.Entries["key2"])
+	assert.Equal(t, "value3", p.Properties.Entries["key3"])
+}

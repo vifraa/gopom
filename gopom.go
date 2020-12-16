@@ -2,6 +2,7 @@ package gopom
 
 import (
 	"encoding/xml"
+	"io"
 	"io/ioutil"
 	"os"
 )
@@ -53,8 +54,30 @@ type Project struct {
 	Build                  Build                  `xml:"build"`
 	Reporting              Reporting              `xml:"reporting"`
 	Profiles               []Profile              `xml:"profiles>profile"`
-	// TODO Profiles
-	// TODO Properties
+	Properties             Properties             `xml:"properties"`
+}
+
+type Properties struct {
+	Entries map[string]string
+}
+
+func (p *Properties) UnmarshalXML(d *xml.Decoder, start xml.StartElement) (err error) {
+	type entry struct {
+		XMLName xml.Name
+		Key     string `xml:"name,attr"`
+		Value   string `xml:",chardata"`
+	}
+	e := entry{}
+	p.Entries = map[string]string{}
+	for err = d.Decode(&e); err == nil; err = d.Decode(&e) {
+		e.Key = e.XMLName.Local
+		p.Entries[e.Key] = e.Value
+	}
+	if err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
 }
 
 type Parent struct {
