@@ -334,7 +334,7 @@ func TestParsing_DependencyManagement(t *testing.T) {
 }
 
 func TestParsing_Dependencies(t *testing.T) {
-	assert.Equal(t, 1, len(p.Dependencies))
+	assert.Equal(t, 2, len(p.Dependencies))
 	d := p.Dependencies[0]
 	assert.Equal(t, "groupId", d.GroupID)
 	assert.Equal(t, "artifactId", d.ArtifactID)
@@ -696,7 +696,7 @@ func TestParsing_Profiles(t *testing.T) {
 }
 
 func Test_ParsingParentProperties(t *testing.T) {
-	assert.Equal(t, 3, len(p.Properties.Entries))
+	assert.Equal(t, 4, len(p.Properties.Entries))
 	assert.Equal(t, "value", p.Properties.Entries["key"])
 	assert.Equal(t, "value2", p.Properties.Entries["key2"])
 	assert.Equal(t, "value3", p.Properties.Entries["key3"])
@@ -729,3 +729,23 @@ func Test_ParsingNotifierConfigurations(t *testing.T) {
 	assert.Equal(t, "value2", p.Properties.Entries["key2"])
 	assert.Equal(t, "value3", p.Properties.Entries["key3"])
 }
+
+func TestNonExpandedVariables(t *testing.T) {
+	dep := p.Dependencies[1]
+	assert.NotNil(t, dep)
+	assert.Equal(t, "com.group.test", dep.GroupID)
+	assert.Equal(t, "artifact-id", dep.ArtifactID)
+	assert.Equal(t, "${groupId.artifactId.version}", dep.Version)
+	assert.Equal(t, "com/group/test/artifact-id/${groupId.artifactId.version}/artifact-id-${groupId.artifactId.version}", dep.NormalizedName())
+	assert.Equal(t, "com/group/test/artifact-id/${groupId.artifactId.version}/artifact-id-${groupId.artifactId.version}.jar", dep.ToURL())
+}
+
+func TestExpandingProjectProperty(t *testing.T) {
+	dep := p.Dependencies[1]
+	assert.NotNil(t, dep)
+	assert.Equal(t, "com/group/test/artifact-id/1.0.0/artifact-id-1.0.0", p.ExpandVariable(dep.NormalizedName()))
+	assert.Equal(t, "com/group/test/artifact-id/1.0.0/artifact-id-1.0.0.jar", p.ExpandVariable(dep.ToURL()))
+}
+
+
+

@@ -5,9 +5,17 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
+	"strings"
 )
 
-func Parse(path string) (*Project, error) {
+const (
+	DOT = "."
+	SLASH = "/"
+	DASH = "-"
+)
+
+
+func Parse(path string) (project *Project, err error) {
 	file, err := os.Open(path)
 	if err != nil {
 		return nil, err
@@ -15,13 +23,21 @@ func Parse(path string) (*Project, error) {
 	defer file.Close()
 
 	b, _ := ioutil.ReadAll(file)
-	var project Project
+	project = &Project{}
 
-	err = xml.Unmarshal(b, &project)
+	err = xml.Unmarshal(b, project)
 	if err != nil {
 		return nil, err
 	}
-	return &project, nil
+	return project, nil
+}
+
+func ParseData(data []byte) (pom *Project, err error) {
+	err = xml.Unmarshal(data, &pom)
+	if err != nil {
+		return nil, err
+	}
+	return pom, err
 }
 
 type Project struct {
@@ -57,6 +73,17 @@ type Project struct {
 	Properties             Properties             `xml:"properties"`
 }
 
+func (project Project) ExpandVariable(value string) (expanded string) {
+	expanded = os.Expand(value, func(rVal string) string {
+		returned := project.Properties.Entries[rVal]
+		if strings.Contains(returned, "${") {
+			return project.ExpandVariable(returned)
+		}
+		return returned
+	})
+	return expanded
+}
+
 type Properties struct {
 	Entries map[string]string
 }
@@ -80,10 +107,43 @@ func (p *Properties) UnmarshalXML(d *xml.Decoder, start xml.StartElement) (err e
 	return nil
 }
 
-type Parent struct {
+type GroupArtifactVersion struct {
 	GroupID      string `xml:"groupId"`
 	ArtifactID   string `xml:"artifactId"`
 	Version      string `xml:"version"`
+}
+
+func (gav *GroupArtifactVersion) NormalizedName() string {
+	cleanGroupId := strings.ToLower(
+		strings.ReplaceAll(gav.GroupID, DOT, SLASH))
+
+	cleanArtifactId := strings.ToLower(
+		strings.ReplaceAll(gav.ArtifactID, DOT, SLASH))
+
+	artifactBaseName := cleanArtifactId
+	if strings.LastIndex(cleanArtifactId, SLASH) > -1 {
+		artifactBaseName = cleanArtifactId[strings.LastIndex(cleanArtifactId, SLASH):]
+	}
+	artifactName := strings.Join([]string{artifactBaseName, gav.Version}, DASH)
+	return strings.Join([]string{cleanGroupId, cleanArtifactId, gav.Version, artifactName}, SLASH)
+}
+
+type GroupArtifactVersionType struct {
+	GroupArtifactVersion
+	Type string `xml:"type"`
+}
+
+func (gavt *GroupArtifactVersionType) ToURL() string {
+	t := gavt.Type
+	if t == "" {
+		t = "jar"
+	}
+	return gavt.NormalizedName() + DOT + t
+}
+
+
+type Parent struct {
+	GroupArtifactVersion
 	RelativePath string `xml:"relativePath"`
 }
 
@@ -99,8 +159,7 @@ type License struct {
 	Comments     string `xml:"comments"`
 }
 
-type Developer struct {
-	ID              string     `xml:"id"`
+type Actor struct {
 	Name            string     `xml:"name"`
 	Email           string     `xml:"email"`
 	URL             string     `xml:"url"`
@@ -111,15 +170,14 @@ type Developer struct {
 	Properties      Properties `xml:"properties"`
 }
 
+type Developer struct {
+	ID              string     `xml:"id"`
+	Actor
+}
+
 type Contributor struct {
 	Name            string     `xml:"name"`
-	Email           string     `xml:"email"`
-	URL             string     `xml:"url"`
-	Organization    string     `xml:"organization"`
-	OrganizationURL string     `xml:"organizationUrl"`
-	Roles           []string   `xml:"roles>role"`
-	Timezone        string     `xml:"timezone"`
-	Properties      Properties `xml:"properties"`
+	Actor
 }
 
 type MailingList struct {
@@ -179,9 +237,7 @@ type Site struct {
 }
 
 type Relocation struct {
-	GroupID    string `xml:"groupId"`
-	ArtifactID string `xml:"artifactId"`
-	Version    string `xml:"version"`
+	GroupArtifactVersion
 	Message    string `xml:"message"`
 }
 
@@ -190,10 +246,7 @@ type DependencyManagement struct {
 }
 
 type Dependency struct {
-	GroupID    string      `xml:"groupId"`
-	ArtifactID string      `xml:"artifactId"`
-	Version    string      `xml:"version"`
-	Type       string      `xml:"type"`
+	GroupArtifactVersionType
 	Classifier string      `xml:"classifier"`
 	Scope      string      `xml:"scope"`
 	SystemPath string      `xml:"systemPath"`
@@ -253,9 +306,7 @@ type Build struct {
 }
 
 type Extension struct {
-	GroupID    string `xml:"groupId"`
-	ArtifactID string `xml:"artifactId"`
-	Version    string `xml:"version"`
+	GroupArtifactVersion
 }
 
 type Resource struct {
@@ -271,9 +322,7 @@ type PluginManagement struct {
 }
 
 type Plugin struct {
-	GroupID      string            `xml:"groupId"`
-	ArtifactID   string            `xml:"artifactId"`
-	Version      string            `xml:"version"`
+	GroupArtifactVersion
 	Extensions   string            `xml:"extensions"`
 	Executions   []PluginExecution `xml:"executions>execution"`
 	Dependencies []Dependency      `xml:"dependencies>dependency"`
@@ -294,9 +343,7 @@ type Reporting struct {
 }
 
 type ReportingPlugin struct {
-	GroupID    string      `xml:"groupId"`
-	ArtifactID string      `xml:"artifactId"`
-	Version    string      `xml:"version"`
+	GroupArtifactVersion
 	Inherited  string      `xml:"inherited"`
 	ReportSets []ReportSet `xml:"reportSets>reportSet"`
 }

@@ -185,6 +185,7 @@ var examplePom = `
     <key>value</key>
     <key2>value2</key2>
     <key3>value3</key3>
+    <groupId.artifactId.version>1.0.0</groupId.artifactId.version>
   </properties>
  
   <dependencyManagement>
@@ -224,6 +225,13 @@ var examplePom = `
           </exclusion>
         </exclusions>
         <optional>optional</optional>
+      </dependency>
+
+      <!-- This still does not work with the "finalName" -->
+	  <dependency>
+        <groupId>com.group.test</groupId>
+        <artifactId>artifact-id</artifactId>
+        <version>${groupId.artifactId.version}</version>
       </dependency>
   </dependencies>
  
