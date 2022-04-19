@@ -24,6 +24,17 @@ func Parse(path string) (*Project, error) {
 	return &project, nil
 }
 
+func ParseFromReader(reader io.Reader) (*Project, error) {
+	b, _ := ioutil.ReadAll(reader)
+	var project Project
+
+	err := xml.Unmarshal(b, &project)
+	if err != nil {
+		return nil, err
+	}
+	return &project, nil
+}
+
 type Project struct {
 	XMLName                xml.Name               `xml:"project"`
 	ModelVersion           string                 `xml:"modelVersion"`
