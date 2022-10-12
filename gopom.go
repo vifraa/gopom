@@ -92,7 +92,7 @@ func (p *Properties) UnmarshalXML(d *xml.Decoder, start xml.StartElement) (err e
 }
 
 // MarshalXML marshals Properties into XML.
-func (p *Properties) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (p Properties) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 
 	tokens := []xml.Token{start}
 
@@ -109,7 +109,6 @@ func (p *Properties) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-
 	// flush to ensure tokens are written
 	return e.Flush()
 }

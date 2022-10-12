@@ -729,3 +729,26 @@ func Test_ParsingNotifierConfigurations(t *testing.T) {
 	assert.Equal(t, "value2", p.Properties.Entries["key2"])
 	assert.Equal(t, "value3", p.Properties.Entries["key3"])
 }
+
+func Test_MarshalingProjectToXML(t *testing.T) {
+	ignitePlugin := Plugin{
+		GroupID:    "org.apache.ignite",
+		ArtifactID: "ignite-core",
+		Version:    "2.14.0",
+	}
+
+	// Add plugin to build plugins of original project p and marshal it to XML.
+	p.Build.Plugins = append(p.Build.Plugins, ignitePlugin)
+
+	// Marshal the pom back to xml
+	marshaledXml, err := xml.MarshalIndent(p, "  ", "    ")
+	assert.Nil(t, err)
+
+	// Parse the marshaled XML back to a Project object
+	parsedPom := Project{}
+	err = xml.Unmarshal(marshaledXml, &parsedPom)
+	assert.Nil(t, err)
+
+	// Check that the two object are equal.
+	assert.Equal(t, p, parsedPom)
+}
