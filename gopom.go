@@ -91,6 +91,28 @@ func (p *Properties) UnmarshalXML(d *xml.Decoder, start xml.StartElement) (err e
 	return nil
 }
 
+// MarshalXML marshals Properties into XML.
+func (p Properties) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+
+	tokens := []xml.Token{start}
+
+	for key, value := range p.Entries {
+		t := xml.StartElement{Name: xml.Name{Local: key}}
+		tokens = append(tokens, t, xml.CharData(value), xml.EndElement{Name: t.Name})
+	}
+
+	tokens = append(tokens, xml.EndElement{Name: start.Name})
+
+	for _, t := range tokens {
+		err := e.EncodeToken(t)
+		if err != nil {
+			return err
+		}
+	}
+	// flush to ensure tokens are written
+	return e.Flush()
+}
+
 type Parent struct {
 	GroupID      string `xml:"groupId"`
 	ArtifactID   string `xml:"artifactId"`
