@@ -427,6 +427,14 @@ func TestParsing_Build(t *testing.T) {
 	assert.Equal(t, 1, len(pl[0].Executions[0].Goals))
 	assert.Equal(t, "goal", pl[0].Executions[0].Goals[0])
 	assert.Equal(t, "inherited", pl[0].Executions[0].Inherited)
+	assert.Equal(t, 3, len(pl[0].Executions[0].Configuration.Entries))
+	assert.Equal(t, "value", pl[0].Executions[0].Configuration.Entries["key"])
+	assert.Equal(t, "value2", pl[0].Executions[0].Configuration.Entries["key2"])
+	assert.Equal(t, "value3", pl[0].Executions[0].Configuration.Entries["key3"])
+	assert.Equal(t, 3, len(pl[0].Configuration.Entries))
+	assert.Equal(t, "value", pl[0].Configuration.Entries["key"])
+	assert.Equal(t, "value2", pl[0].Configuration.Entries["key2"])
+	assert.Equal(t, "value3", pl[0].Configuration.Entries["key3"])
 
 	assert.Equal(t, 1, len(pl[0].Dependencies))
 	d := pl[0].Dependencies[0]
@@ -454,6 +462,14 @@ func TestParsing_Build(t *testing.T) {
 	assert.Equal(t, 1, len(pl[0].Executions[0].Goals))
 	assert.Equal(t, "goal", pl[0].Executions[0].Goals[0])
 	assert.Equal(t, "inherited", pl[0].Executions[0].Inherited)
+	assert.Equal(t, 3, len(pl[0].Executions[0].Configuration.Entries))
+	assert.Equal(t, "value", pl[0].Executions[0].Configuration.Entries["key"])
+	assert.Equal(t, "value2", pl[0].Executions[0].Configuration.Entries["key2"])
+	assert.Equal(t, "value3", pl[0].Executions[0].Configuration.Entries["key3"])
+	assert.Equal(t, 3, len(pl[0].Configuration.Entries))
+	assert.Equal(t, "value", pl[0].Configuration.Entries["key"])
+	assert.Equal(t, "value2", pl[0].Configuration.Entries["key2"])
+	assert.Equal(t, "value3", pl[0].Configuration.Entries["key3"])
 
 	assert.Equal(t, 1, len(pl[0].Dependencies))
 	d = pl[0].Dependencies[0]
@@ -485,6 +501,14 @@ func TestParsing_Reporting(t *testing.T) {
 	assert.Equal(t, 1, len(pl[0].ReportSets[0].Reports))
 	assert.Equal(t, "report", pl[0].ReportSets[0].Reports[0])
 	assert.Equal(t, "inherited", pl[0].ReportSets[0].Inherited)
+	assert.Equal(t, 3, len(pl[0].ReportSets[0].Configuration.Entries))
+	assert.Equal(t, "value", pl[0].ReportSets[0].Configuration.Entries["key"])
+	assert.Equal(t, "value2", pl[0].ReportSets[0].Configuration.Entries["key2"])
+	assert.Equal(t, "value3", pl[0].ReportSets[0].Configuration.Entries["key3"])
+	assert.Equal(t, 3, len(pl[0].Configuration.Entries))
+	assert.Equal(t, "value", pl[0].Configuration.Entries["key"])
+	assert.Equal(t, "value2", pl[0].Configuration.Entries["key2"])
+	assert.Equal(t, "value3", pl[0].Configuration.Entries["key3"])
 }
 
 func TestParsing_Profiles(t *testing.T) {
@@ -538,6 +562,14 @@ func TestParsing_Profiles(t *testing.T) {
 	assert.Equal(t, 1, len(pl[0].Executions[0].Goals))
 	assert.Equal(t, "goal", pl[0].Executions[0].Goals[0])
 	assert.Equal(t, "inherited", pl[0].Executions[0].Inherited)
+	assert.Equal(t, 3, len(pl[0].Executions[0].Configuration.Entries))
+	assert.Equal(t, "value", pl[0].Executions[0].Configuration.Entries["key"])
+	assert.Equal(t, "value2", pl[0].Executions[0].Configuration.Entries["key2"])
+	assert.Equal(t, "value3", pl[0].Executions[0].Configuration.Entries["key3"])
+	assert.Equal(t, 3, len(pl[0].Configuration.Entries))
+	assert.Equal(t, "value", pl[0].Configuration.Entries["key"])
+	assert.Equal(t, "value2", pl[0].Configuration.Entries["key2"])
+	assert.Equal(t, "value3", pl[0].Configuration.Entries["key3"])
 
 	assert.Equal(t, 1, len(pl[0].Dependencies))
 	d := pl[0].Dependencies[0]
@@ -565,6 +597,14 @@ func TestParsing_Profiles(t *testing.T) {
 	assert.Equal(t, 1, len(pl[0].Executions[0].Goals))
 	assert.Equal(t, "goal", pl[0].Executions[0].Goals[0])
 	assert.Equal(t, "inherited", pl[0].Executions[0].Inherited)
+	assert.Equal(t, 3, len(pl[0].Executions[0].Configuration.Entries))
+	assert.Equal(t, "value", pl[0].Executions[0].Configuration.Entries["key"])
+	assert.Equal(t, "value2", pl[0].Executions[0].Configuration.Entries["key2"])
+	assert.Equal(t, "value3", pl[0].Executions[0].Configuration.Entries["key3"])
+	assert.Equal(t, 3, len(pl[0].Configuration.Entries))
+	assert.Equal(t, "value", pl[0].Configuration.Entries["key"])
+	assert.Equal(t, "value2", pl[0].Configuration.Entries["key2"])
+	assert.Equal(t, "value3", pl[0].Configuration.Entries["key3"])
 
 	assert.Equal(t, 1, len(pl[0].Dependencies))
 	d = pl[0].Dependencies[0]
@@ -693,6 +733,14 @@ func TestParsing_Profiles(t *testing.T) {
 	assert.Equal(t, 1, len(repPl[0].ReportSets[0].Reports))
 	assert.Equal(t, "report", repPl[0].ReportSets[0].Reports[0])
 	assert.Equal(t, "inherited", repPl[0].ReportSets[0].Inherited)
+	assert.Equal(t, 3, len(repPl[0].ReportSets[0].Configuration.Entries))
+	assert.Equal(t, "value", repPl[0].ReportSets[0].Configuration.Entries["key"])
+	assert.Equal(t, "value2", repPl[0].ReportSets[0].Configuration.Entries["key2"])
+	assert.Equal(t, "value3", repPl[0].ReportSets[0].Configuration.Entries["key3"])
+	assert.Equal(t, 3, len(repPl[0].Configuration.Entries))
+	assert.Equal(t, "value", repPl[0].Configuration.Entries["key"])
+	assert.Equal(t, "value2", repPl[0].Configuration.Entries["key2"])
+	assert.Equal(t, "value3", repPl[0].Configuration.Entries["key3"])
 }
 
 func Test_ParsingParentProperties(t *testing.T) {
@@ -732,9 +780,10 @@ func Test_ParsingNotifierConfigurations(t *testing.T) {
 
 func Test_MarshalingProjectToXML(t *testing.T) {
 	ignitePlugin := Plugin{
-		GroupID:    "org.apache.ignite",
-		ArtifactID: "ignite-core",
-		Version:    "2.14.0",
+		GroupID:       "org.apache.ignite",
+		ArtifactID:    "ignite-core",
+		Version:       "2.14.0",
+		Configuration: Properties{Entries: map[string]string{}},
 	}
 
 	// Add plugin to build plugins of original project p and marshal it to XML.
